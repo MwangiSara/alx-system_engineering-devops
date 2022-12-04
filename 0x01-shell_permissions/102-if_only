@@ -1,0 +1,2 @@
+#!/bin/bash
+chomd --from=guillaum betty hello
