@@ -1,0 +1,54 @@
+To generate an RSA SSH key pair, you can use the `ssh-keygen` command-line tool. Follow the instructions below to generate the key pair:
+
+1. Open a terminal on your Linux or macOS system.
+
+2. Run the following command to generate the key pair:
+
+   ```bash
+   ssh-keygen -t rsa -b 4096
+   ```
+
+   This command specifies the key type (`-t rsa`) as RSA and the key length (`-b 4096`) as 4096 bits. You can adjust the key length according to your requirements.
+
+3. You will be prompted to provide the file name for the key pair. Press Enter to accept the default file location (`~/.ssh/id_rsa`) or specify a different file name and path if desired.
+
+4. You will then be prompted to enter a passphrase. Adding a passphrase is optional but recommended for increased security. If you choose to use a passphrase, enter it and press Enter. Alternatively, you can press Enter twice to create a key without a passphrase.
+
+5. The key pair will be generated, and you will see output similar to the following:
+
+   ```
+   Generating public/private rsa key pair.
+   Enter file in which to save the key (/home/.ssh/id_rsa):
+   /home/.ssh/id_rsa already exists.
+   Overwrite (y/n)? y
+   Enter passphrase (empty for no passphrase):
+   Enter same passphrase again:
+   Your identification has been saved in /home/.ssh/id_rsa
+   Your public key has been saved in /home/.ssh/id_rsa.pub
+   The key fingerprint is:
+   SHA256:Z4XL+BsKqu4XMqACCATamqh8KPD1cJ199R++26mXbNs ebendttl@Ebendttl
+   The key's randomart image is:
+   +---[RSA 4096]----+
+   |+.               |
+   |o.         .     |
+   |+ .       . . .  |
+   |=o     . = o . . |
+   |B.  o . S * .  ..|
+   |*.+..+   + .  . o|
+   |+o.+ .o   o   ..o|
+   |. . .. . . o   ==|
+   | o+o.   . .  .+=E|
+   +----[SHA256]-----+
+   ```
+
+   The `id_rsa` file is the private key, and the `id_rsa.pub` file is the public key.
+
+6. Share your public key, which is stored in the `id_rsa.pub` file, as requested. You can retrieve the contents of the public key by running the following command:
+
+   ```bash
+   cat ~/.ssh/id_rsa.pub
+   ```
+
+   Copy the output and provide it in your answer file as `0-RSA_public_key.pub`.
+
+Remember to keep your private key (`id_rsa`) in a secure location and never share it with others.i

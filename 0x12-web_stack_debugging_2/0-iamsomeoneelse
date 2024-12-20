@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Spcript that takes a new user as argument and print
+# out the user whenever whoami is asked
+sudo -u "$1" whoami

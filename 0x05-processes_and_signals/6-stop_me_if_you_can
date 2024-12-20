@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Write a Bash script that stops `4-to_infinity_and_beyond` process.
+# Requirements:
+# You cannot use ki`ll or `killall`
+
+# I opened 2 terminals in this example, started by running my `4-to_infinity_and_beyond`
+# Bash script in terminal #0 and then moved on terminal #1 to run `6-stop_me_if_you_can`.
+# We can then see in terminal #0 that my process has been terminated.
+
+pkill -f 4-to_infinity_and_beyond

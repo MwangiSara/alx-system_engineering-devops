@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# a Bash script that will display information about subdomains
+# Usage: ./0-world_wide_web <domain>.<subdomain>
+
+# Function to fetch DNS information and display results
+fetch_dns_info() {
+    domain="$1"
+    subdomain="$2"
+    dig_output=$(dig "$subdomain.$domain" +short)
+
+    if [ -z "$dig_output" ]; then
+        echo "No DNS records found for $subdomain.$domain"
+    else
+        record_type=$(dig "$subdomain.$domain" | awk '/^;; ANSWER SECTION:/{getline; print $4}')
+        echo "The subdomain $subdomain is a $record_type record and points to $dig_output"
+    fi
+}
+
+# Main script
+domain="$1"
+subdomain="$2"
+
+# Default subdomains to check
+default_subdomains=("www" "lb-01" "web-01" "web-02")
+
+# If only domain is provided, check default subdomains
+if [ -z "$subdomain" ]; then
+    for sub in "${default_subdomains[@]}"; do
+        fetch_dns_info "$domain" "$sub"
+    done
+else
+    fetch_dns_info "$domain" "$subdomain"
+fi

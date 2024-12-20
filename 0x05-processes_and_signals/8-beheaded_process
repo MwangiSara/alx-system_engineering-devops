@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Write a Bash script that kills the process `7-highlander`.
+
+# I started `7-highlander` in Terminal #0 and then run `8-beheaded_process`
+# in terminal #1 and we can see that the `7-highlander` has been killed.
+
+pkill -f -SIGKILL 7-highlander

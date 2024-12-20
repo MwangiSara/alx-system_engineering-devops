@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Configure Nginx to listen on port 80 and debugging nginx (service (init) must say that nginx is not running)
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo pkill -o nginx # curl 0:80; sudo service nginx status | grep "nginx is not running"

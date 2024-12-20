@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# configures a brand new Ubuntu machine to the requirements:
+# Configure your Nginx server to have a custom 404 page that contains the string `Ceci n'est pas une page`.
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Update package index//list and install Nginx
+sudo apt-get update -y
+sudo apt-get install -y nginx
+
+# Start Nginx service
+sudo service nginx start
+
+# Allow OpenSSH and Nginx HTTP traffic through the firewall
+sudo ufw allow 'OpenSSH'
+sudo ufw allow 'Nginx HTTP'
+
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Create a custom HTML file for the 404 page and Pass the desired string into the HTML file
+sudo echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# creating an Nginx server configuration file to use the custom 404 page and handle the redirect
+sudo echo "server {
+   listen 80 default_server;
+   listen [::]:80 default_server;
+
+   root /var/www/html;
+   index index.html index.htm index.nginx-debian.html;
+   location /redirect_me {
+      return 301 https://github.com/OluTshegz;
+   }
+   error_page 404 /404.html;
+   location = /404.html{
+      internal;
+   }
+}" > default
+
+# moves the created default file to the directory is where Nginx looks for its configuration files
+sudo mv -f default /etc/nginx/sites-available/default
+
+sudo nginx -t
+
+# Restart Nginx service to apply the configuration changes
+sudo service nginx restart

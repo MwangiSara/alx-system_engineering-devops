@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Write a Bash script that:
+# Creates the file `/var/run/myscript.pid` containing its PID
+# Displays `To infinity and beyond` indefinitely
+# Displays `I hate the kill command` when receiving a SIGTERM signal
+# Displays `Y U no love me?!` when receiving a SIGINT signal
+# Deletes the file `/var/run/myscript.pid` and terminates itself
+# when receiving a `SIGQUIT` or `SIGTERM` signal
+
+# `Sudo` Executing the `100-process_and_pid_file`
+# script and killing it with `ctrl+c`.
+# `Sudo` Starting `100-process_and_pid_file` in the
+# terminal #0 and then `Sudo` killing it in the terminal #1.
+
+echo $$ > /var/run/myscript.pid
+
+trap "echo 'I hate the kill command'; rm -rf /var/run/myscript.pid; exit" SIGTERM
+trap "echo 'Y U no love me?!'; exit" SIGINT
+trap "rm -rf /var/run/holbertonscript.pid; exit" SIGQUIT
+
+while true
+do 
+    echo "To infinity and beyond"
+    sleep 2
+done

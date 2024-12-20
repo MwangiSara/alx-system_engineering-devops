@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# NAT table rules
+*nat
+:PREROUTING ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Forward traffic from port 8080 to port 80
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+
+# Commit the NAT table rules
+COMMIT
+

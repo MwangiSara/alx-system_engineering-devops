@@ -1,0 +1,8 @@
+
+All HTTP response status codes are separated into five classes or categories. The first digit of the status code defines the class of response, while the last two digits do not have any classifying or categorization role. There are five classes defined by the standard:
+
+-   _1xx informational response_  – the request was received, continuing process
+-   _2xx successful_  – the request was successfully received, understood, and accepted
+-   _3xx redirection_  – further action needs to be taken in order to complete the request
+-   _4xx client error_  – the request contains bad syntax or cannot be fulfilled
+-   _5xx server error_  – the server failed to fulfil an apparently valid request

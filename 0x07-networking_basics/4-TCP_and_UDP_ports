@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#4-TCP_and_UDP_ports
+
+# Display listening sockets with PID and program name
+netstat -tuln | grep LISTEN | awk '{print $4, $7}' | while read -r line; do
+    port=$(echo "$line" | awk '{split($1,a,":"); print a[length(a)]}')
+    pid=$(echo "$line" | awk '{split($2,a,"/"); print a[1]}')
+    program=$(echo "$line" | awk '{split($2,a,"/"); print a[2]}')
+    echo "Port: $port, PID: $pid, Program: $program"
+done
+

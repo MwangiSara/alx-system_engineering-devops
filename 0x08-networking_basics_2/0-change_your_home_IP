@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#A Bash script that configures an Ubuntu server with the below requirements.
+#
+#1:localhost resolves to 127.0.0.2
+#2:facebook.com resolves to 8.8.8.8
+
+# Check if script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root" 
+    exit 1
+fi
+
+# Define the IP addresses to use
+localhost_ip="127.0.0.2"
+facebook_ip="8.8.8.8"
+
+# Update /etc/hosts file
+echo "$localhost_ip localhost" | sudo tee -a /etc/hosts
+echo "$facebook_ip facebook.com" | sudo tee -a /etc/hosts
+
+# Flush DNS cache
+sudo systemd-resolve --flush-caches
+

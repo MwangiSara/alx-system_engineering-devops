@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+# Configuration of firewall
+
+# Updating my server
+sudo apt-get update
+
+# Installing ufw
+sudo apt-get install ufw
+
+# Denying incoming packets
+sudo ufw default deny incoming
+
+# Allowing outging packets
+sudo ufw default allow outgoing
+
+# Allowing port 22
+sudo ufw allow 22/tcp
+
+# Allowing port 443 for ssl
+sudo ufw allow 443/tcp
+
+# Allowing port 80
+sudo ufw allow 80/tcp
+
+# Enabling the ufw firewall
+sudo ufw enable
